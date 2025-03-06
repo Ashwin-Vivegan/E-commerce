@@ -45,3 +45,36 @@ Compare it with the stored hashed password for authentication.
 
 ## validate password 
 Ensures that only valid data is saved in the database, maintaining data integrity and preventing errors.
+
+### Milestone 11
+
+- Create an API endpoint to send all product data.
+- Fetch data from the backend.
+- Pass it to the product card component.
+- Display the data dynamically.
+
+### Milestone 12
+
+- Create an API endpoint that filters and retrieves data from MongoDB based on the user's email.
+- Fetch data on the frontend by calling this API.
+- Dynamically display the data using the previously created product card component.
+
+### Milestone 13
+
+- Create an API endpoint that receives new data.
+- Use MongoDB’s update operation to modify the existing data.
+- Add an Edit button to the product card.
+- When clicked, the existing data is sent to a form.
+- Auto-fill the form with previous data.
+- Allow users to modify the data and save changes.
+
+### Milestone 14
+
+- Create an API endpoint to delete a product from MongoDB using its ID.
+- Implement a delete button in the frontend on each product card.
+- Send a delete request to the backend when the button is clicked.
+
+### Milestone 15
+
+- Uses React Router for navigation.
+- Created navigation bar.

@@ -78,3 +78,7 @@ Ensures that only valid data is saved in the database, maintaining data integrit
 
 - Uses React Router for navigation.
 - Created navigation bar.
+
+### Milestone 16
+- Learn to create new page to display each product.
+- Learn to add quantity and add to card button.

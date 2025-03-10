@@ -82,3 +82,7 @@ Ensures that only valid data is saved in the database, maintaining data integrit
 ### Milestone 16
 - Learn to create new page to display each product.
 - Learn to add quantity and add to card button.
+
+### Milestone-18
+Created an Backend endpoint for cart page
+Wrote endpoint to get products inside cart for user

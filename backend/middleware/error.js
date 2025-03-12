@@ -1,32 +1,48 @@
-const errorHandler = require('../utils/Error')
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+
+const userSchema = new mongoose.Schema({
+
+    name:{type:String,required:true},
+    email:{type:String,required:true,unique:true},
+    phoneNumber:{type:Number},
+    password:{type:String,required:true,minLength:4},
+    avatar:{
+        id:{type:String},
+        url:{type:String},
 
 
-module.exports=(err,req,res,next)=>{
-    err.message=err.message||'something went wrong'
-    err.statuscode=err.statuscode
+    },
+    // address:{
+        
+    //     country:{type:String},
+    //     city:{type:String,required:true},
+    //     address1:{type:String,required:true},
+    //     address2:{type:String,required:true},
+    //     pinCode:{type:Number,required:true},
+    // },
+    role:{type:String,default:"user"},
+    createdAt:{type:Date,default:Date.now()},
 
-    if(err.name=="CastError"){//mongodb id error-->mongodb should have 14 digit hexa decimal number if not we will get cast error
-        const message="send the correct id"
-        err= new errorHandler(message,400)
-    }
 
-    if(err.name=="11000"){
-        const message="id already exist"
-        err= new errorHandler(message,400)
-    }
-    
-    if(err.name=="jsonWebToken"){
+})
 
-    }
-    
-    if(err.name=="jsonTokenexpired")
-    {
 
-    }
+userSchema.pre("save",async function (next) {
+    if(!this.isModified('password'))
+        return next()
 
-    res.status(err.statuscode).json({
-        success:"false",
-        message:err.message
-    })
-
+    await bcrypt.hash(this.password,10)
+    next()
+})
+userSchema.methods.jsonTokens= function(){
+    return jwt.sign({id:this._id},process.env.JWT_TOKEN,{expiresIn:'7d'})
 }
+
+userSchema.methods.ComparePassword = async ()=> {
+    
+}
+
+
+module.exports = mongoose.model("User",userSchema)

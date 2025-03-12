@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require ('mongoose')
-const Product = require('../model/product')
+const Product = require('../Model/product')
 const User = require("../Model/user")
 const {pupload} = require('../multer')
 const router = express.Router()

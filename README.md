@@ -101,3 +101,9 @@ Displayed profile photo, name, mail and addresses.
 Created address form frontend page
 Created an state that will store input address
 When we click on add address in profile it should navigate to this form page.
+
+
+### Milestone 22
+
+- Created an endpoint that will receive the address from address form in frontend
+- Added the address to the address array inside user collection

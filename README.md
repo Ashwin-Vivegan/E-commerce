@@ -208,3 +208,21 @@ cart
 - Created an placeorder button inside cart page and navigate to select address page when clicked.
 - Created and selected address page that will display all the available address and have an option to select one address.
 - Wrote an backend endpoint that will send all the addresses of the user.
+
+## Milestone 24
+- Created an order conformation page.
+
+## Milestone 25
+- Created an backend endpoint that helps in placing the order.
+
+## Milestone 26
+- Created an backend endpoint that helps in getting all the orders of the user.
+
+## Milestone 27
+- Created an frontend page that will display all the user orders.
+
+## Milestone 28
+- In this added cancel button in my-orders and created an backend endpoint for cancel order.
+
+## Milestone 29
+- Added online payment gateway to the application using Paypal api.

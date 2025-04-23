@@ -114,3 +114,12 @@ cart
 
 ## Milestone 29
 - Added online payment gateway to the application using Paypal api.
+
+## Milestone 30
+
+- Integrated online payments using PayPal.
+- Created a PayPal Sandbox account and retrieved the Client ID.
+- Installed the PayPal SDK wrapper
+- Used `PayPalScriptProvider` from `react-paypal-js` to load PayPal’s payment methods.
+- Enabled support for credit/debit card and PayPal payments.
+

@@ -1,3 +1,5 @@
+import React from "react"
+
 export default function Product({
 	_id,
 	country,
@@ -78,5 +80,5 @@ export default function Product({
 	// 			</div>
 	// 		</div>
 	// 	</div>
-	//  */}
+	// ); */}
 	)}

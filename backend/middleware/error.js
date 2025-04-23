@@ -1,48 +1,31 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+const ErrorHandler= require('../utils/ErrorHandler')
 
-const userSchema = new mongoose.Schema({
+module.exports=(err,req,res,next)=>{
+    err.statusCode=err.statusCode||500
+    err.message = err.message
 
-    name:{type:String,required:true},
-    email:{type:String,required:true,unique:true},
-    phoneNumber:{type:Number},
-    password:{type:String,required:true,minLength:4},
-    avatar:{
-        id:{type:String},
-        url:{type:String},
+  // wrong mongodb id error
+    if(err.name==="CastError"){
+        const message=`Resource is not found with this id.. Invalid ${this.err.path}`
+        err= new ErrorHandler(message,400)
+    }
 
+  //Duplicate key error
+      if(err.code ===11000){
+        const message =`Duplicate key ${Object.keys(err.keyValue)} entered`
+        err = new ErrorHandler(message ,400)
+      }
+     //wrong jwt error
+     if(err.name==="JsonWebTokenError"){
+        const message = 'Your url is invalid please try again letter'
+        err= new ErrorHandler(message,400)
+     }
 
-    },
-    // address:{
-        
-    //     country:{type:String},
-    //     city:{type:String,required:true},
-    //     address1:{type:String,required:true},
-    //     address2:{type:String,required:true},
-    //     pinCode:{type:Number,required:true},
-    // },
-    role:{type:String,default:"user"},
-    createdAt:{type:Date,default:Date.now()},
+     //jwt expired
+     if(err.name === "TokenExpiredError"){
+        const message='Your url is expired please try again'
+        err= new ErrorHandler(message,400)
+     }
 
-
-})
-
-
-userSchema.pre("save",async function (next) {
-    if(!this.isModified('password'))
-        return next()
-
-    await bcrypt.hash(this.password,10)
-    next()
-})
-userSchema.methods.jsonTokens= function(){
-    return jwt.sign({id:this._id},process.env.JWT_TOKEN,{expiresIn:'7d'})
+     res.status(err.statusCode).json({success:false,message:err.message})
 }
-
-userSchema.methods.ComparePassword = async ()=> {
-    
-}
-
-
-module.exports = mongoose.model("User",userSchema)
